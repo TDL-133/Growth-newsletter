@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Weekly - 20-26 Octobre 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: #111827;
+            background-color: white;
+        }
+
+        /* Container */
+        .min-h-screen { min-height: 100vh; }
+        .max-w-3xl { max-width: 48rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        
+        /* Spacing */
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-16 { margin-bottom: 4rem; }
+        .mt-1 { margin-top: 0.25rem; }
+        
+        /* Typography */
+        .text-center { text-align: center; }
+        .text-xs { font-size: 0.75rem; line-height: 1rem; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .font-light { font-weight: 300; }
+        .font-medium { font-weight: 500; }
+        .leading-relaxed { line-height: 1.625; }
+        
+        /* Colors */
+        .text-gray-400 { color: #9ca3af; }
+        .text-gray-500 { color: #6b7280; }
+        .text-gray-600 { color: #4b5556; }
+        
+        /* Category colors */
+        .text-red-500 { color: #ef4444; }
+        .text-yellow-500 { color: #eab308; }
+        .text-green-500 { color: #22c55e; }
+        
+        /* Subtitle styling */
+        .subtitle {
+            font-style: italic;
+            color: #6b7280;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Category section styling */
+        .category-section {
+            margin-bottom: 3rem;
+        }
+        
+        .category-header {
+            margin-bottom: 2rem;
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-divider {
+            height: 2px;
+            width: 3rem;
+        }
+        
+        .category-divider.red { background-color: #ef4444; }
+        .category-divider.yellow { background-color: #eab308; }
+        .category-divider.green { background-color: #22c55e; }
+        
+        /* Layout */
+        .flex { display: flex; }
+        .flex-1 { flex: 1 1 0%; }
+        .items-start { align-items: flex-start; }
+        .items-center { align-items: center; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .space-y-12 > * + * { margin-top: 3rem; }
+        
+        /* Divider */
+        .divider {
+            width: 4rem;
+            height: 1px;
+            background-color: #d1d5db;
+            margin: 1rem auto;
+        }
+        
+        /* Article styling */
+        .group {
+            transition: all 0.2s ease;
+        }
+        
+        .group:hover .article-title {
+            color: #2563eb;
+        }
+        
+        .article-title {
+            transition: color 0.2s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        article {
+            animation: fadeIn 0.5s ease-out forwards;
+            animation-fill-mode: both;
+        }
+        
+        article:nth-child(1) { animation-delay: 0.1s; }
+        article:nth-child(2) { animation-delay: 0.2s; }
+        article:nth-child(3) { animation-delay: 0.3s; }
+        article:nth-child(4) { animation-delay: 0.4s; }
+        article:nth-child(5) { animation-delay: 0.5s; }
+        article:nth-child(6) { animation-delay: 0.6s; }
+        article:nth-child(7) { animation-delay: 0.7s; }
+        article:nth-child(8) { animation-delay: 0.8s; }
+        article:nth-child(9) { animation-delay: 0.9s; }
+        article:nth-child(10) { animation-delay: 1.0s; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .px-8 { padding-left: 1rem; padding-right: 1rem; }
+            .py-16 { padding-top: 2rem; padding-bottom: 2rem; }
+            .text-4xl { font-size: 1.875rem; }
+            .text-xl { font-size: 1.125rem; }
+            .mb-16 { margin-bottom: 2rem; }
+            .space-y-12 > * + * { margin-top: 2rem; }
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .sources-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .sources-list li {
+            margin-bottom: 0.5rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen">
+        <div class="max-w-3xl mx-auto px-8 py-16">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <h1 class="text-4xl font-light mb-4">Growth Weekly</h1>
+                <p class="subtitle">by Dagorsey & Claude</p>
+                <div class="divider"></div>
+                <p class="text-gray-500">20 - 26 Octobre 2025</p>
+                <p class="text-gray-400 text-sm mt-1">Les sources sont disponibles en fin de newsletter</p>
+            </div>
+
+            <!-- Content -->
+            <div id="minimal-news-container">
+                <!-- News items will be populated here by categories -->
+            </div>
+            
+            <!-- Footer with Sources -->
+            <div class="footer">
+                <h3 class="text-xl font-medium mb-4 text-gray-600">Sources utilisées pour cette édition</h3>
+                <ul class="sources-list">
+                    <li>• Kyle Poyar - Growth Unhinged</li>
+                    <li>• Elena Verna - Elena's Growth Scoop</li>
+                    <li>• Demand Curve</li>
+                    <li>• Product School</li>
+                    <li>• Metronome Blog</li>
+                    <li>• Userpilot Blog</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // News data organized by categories
+        const newsData = {
+            critical: [
+                {
+                    id: "1",
+                    title: "Votre pricing est (probablement) cassé",
+                    url: "https://www.growthunhinged.com/p/your-pricing-is-broken",
+                    summary: "Kyle Poyar démontre qu'il n'existe pas de modèle de pricing parfait. Des abonnements flat-fee aux modèles basés sur l'usage, chaque approche présente des failles. La clé : ne pas abandonner votre pricing, mais le corriger avec des tactiques spécifiques selon votre modèle.",
+                    rank: 1,
+                    source: "Kyle Poyar / Growth Unhinged"
+                },
+                {
+                    id: "2",
+                    title: "L'activation produit : 90% des équipes s'y prennent mal",
+                    url: "https://www.elenaverna.com/p/hey-b2b-i-bet-you-are-measuring-activation",
+                    summary: "Elena Verna révèle que 90% des problèmes de monétisation et rétention proviennent d'une activation incorrecte. En B2B, l'activation ne devrait pas toujours être self-serve, et les métriques doivent capturer l'engagement au niveau du compte, pas seulement de l'utilisateur individuel.",
+                    rank: 2,
+                    source: "Elena Verna / Growth Scoop"
+                },
+                {
+                    id: "3",
+                    title: "Les modèles de pricing AI agents évoluent vers les crédits",
+                    url: "https://metronome.com/blog/ai-pricing-in-practice-2025-field-report-from-leading-saas-teams",
+                    summary: "Les startups AI passent du pricing par agent aux crédits par tâche, voire aux modèles outcome-based. Intercom propose des essais AI généreux permettant aux clients d'estimer leur usage avant engagement, réduisant l'anxiété d'adoption.",
+                    rank: 3,
+                    source: "Metronome"
+                },
+                {
+                    id: "4",
+                    title: "Product-Led Growth : le playbook en 11 tactiques pour 2025",
+                    url: "https://userpilot.com/blog/product-led-growth-playbook/",
+                    summary: "Le PLG prédit de devenir encore plus dominant en 2025. Le guide couvre l'onboarding personnalisé, les freemium/trials, les messages contextuels in-app, et l'utilisation d'analytics produit pour prendre des décisions data-driven qui accélèrent la croissance.",
+                    rank: 4,
+                    source: "Userpilot"
+                }
+            ],
+            important: [
+                {
+                    id: "5",
+                    title: "L'effondrement des moats de distribution pré-IA et comment en construire de nouveaux",
+                    url: "https://productschool.substack.com/p/product-leaders-reveal-their-ai-strategies",
+                    summary: "Elena Verna explique comment les stratégies traditionnelles comme le SEO sont perturbées par l'IA. Elle souligne l'importance de construire de nouveaux moats à l'ère de l'IA, car les clients peuvent désormais créer des solutions concurrentes eux-mêmes avec les outils AI.",
+                    rank: 5,
+                    source: "Product School / ProductCon AI"
+                },
+                {
+                    id: "6",
+                    title: "Taux de conversion freemium SaaS : benchmarks 2025 par industrie",
+                    url: "https://firstpagesage.com/seo-blog/saas-freemium-conversion-rates/",
+                    summary: "Nouveaux benchmarks révèlent des taux de conversion visitor-to-freemium de 13,7% et freemium-to-paid de 3,7% en moyenne. Les secteurs LegalTech (5,7%) et RegTech (5,8%) affichent les meilleurs taux de conversion freemium vers payant.",
+                    rank: 6,
+                    source: "First Page Sage"
+                },
+                {
+                    id: "7",
+                    title: "La rétention : le situationship du SaaS",
+                    url: "https://www.elenaverna.com/p/retention-the-situationship-of-saas",
+                    summary: "Elena Verna affirme que nous vivons une ère d'effondrement du product-market fit. La rétention est le test ultime du PMF, mais c'est devenu un quiz pop que vous devez passer chaque trimestre alors que l'IA reshape des catégories entières du jour au lendemain.",
+                    rank: 7,
+                    source: "Elena Verna / Growth Scoop"
+                },
+                {
+                    id: "8",
+                    title: "Quand les entreprises PLG sont prêtes pour le Product-Led Sales",
+                    url: "https://www.endgame.io/blog/elena-verna-ready-for-pls",
+                    summary: "Elena Verna partage les signaux indiquant qu'une entreprise PLG est prête pour le PLS. L'objectif n'est jamais de remplacer une motion product-led par sales-led, mais de les superposer pour évoluer le GTM en introduisant de nouvelles motions de croissance.",
+                    rank: 8,
+                    source: "Endgame / Elena Verna"
+                }
+            ],
+            goodToKnow: [
+                {
+                    id: "9",
+                    title: "Stratégies de croissance SaaS qui fonctionnent vraiment en 2025",
+                    url: "https://strategicbrandbuilders.com/blog/saas-growth-strategies-2025",
+                    summary: "La croissance rapide sans systèmes est juste du chaos coûteux. Les meilleures entreprises SaaS connaissent la différence entre activation, expansion ($3M-$15M ARR) et scale. Le content marketing doit être mappé à chaque étape : awareness, consideration, decision, retention.",
+                    rank: 9,
+                    source: "Strategic Brand Builders"
+                },
+                {
+                    id: "10",
+                    title: "Optimisation du taux de conversion pour entreprises SaaS : guide PMM",
+                    url: "https://userpilot.com/blog/conversion-rate-optimization-for-saas/",
+                    summary: "Quatre taux de conversion SaaS critiques : visiteurs vers free trial, trial vers PQL, PQL vers payants, et growth metrics. Utiliser les benchmarks pour monitorer la performance et l'analyse comportementale pour comprendre ce qui apporte de la valeur aux utilisateurs.",
+                    rank: 10,
+                    source: "Userpilot"
+                },
+                {
+                    id: "11",
+                    title: "Le pricing des agents IA en pratique : rapport 2025",
+                    url: "https://www.chargebee.com/blog/pricing-ai-agents-playbook/",
+                    summary: "Les frais flat par siège permettent aux agents IA prosumer de monétiser chaque nouveau compte créé, malgré le risque de churn élevé. La transition vers le pricing AI basé sur l'usage nécessite souvent de repenser la facturation comme plateforme interne partagée.",
+                    rank: 11,
+                    source: "Chargebee"
+                },
+                {
+                    id: "12",
+                    title: "Go-to-Market pour agents IA : stratégies de lancement et scale 2025",
+                    url: "https://userpilot.com/blog/ai-gtm/",
+                    summary: "Les modèles SaaS traditionnels et stratégies PLG sont insuffisants pour les produits AI, qui demandent de nouvelles règles pour acquisition, adoption et monétisation. Les agents IA promettent gains d'efficacité : la moindre friction ressemble à un échec et les users churnent rapidement.",
+                    rank: 12,
+                    source: "Userpilot / Maja Voje"
+                }
+            ]
+        };
+
+        // Function to get number color based on category
+        function getNumberColor(rank) {
+            if (rank <= 4) return 'text-red-500';
+            if (rank <= 8) return 'text-yellow-500';
+            return 'text-green-500';
+        }
+
+        // Render function for categorized layout
+        function renderCategorizedLayout() {
+            const container = document.getElementById('minimal-news-container');
+            
+            // Create HTML for Critical section
+            const criticalHTML = `
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2 class="category-title text-red-500">Critique</h2>
+                        <div class="category-divider red"></div>
+                    </div>
+                    <div class="space-y-12">
+                        ${newsData.critical.map((item) => `
+                            <article class="group">
+                                <div class="flex items-start gap-6">
+                                    <div class="text-2xl font-light ${getNumberColor(item.rank)} mt-1">
+                                        ${String(item.rank).padStart(2, '0')}
+                                    </div>
+                                    <div class="flex-1">
+                                        <h2 class="text-xl font-medium mb-3 article-title">
+                                            <a href="${item.url}" target="_blank" style="text-decoration: none; color: inherit;">
+                                                ${item.title}
+                                            </a>
+                                        </h2>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">${item.summary}</p>
+                                        <div class="flex items-center gap-4 text-sm text-gray-400">
+                                            <span>${item.source}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // Create HTML for Important section
+            const importantHTML = `
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2 class="category-title text-yellow-500">Important</h2>
+                        <div class="category-divider yellow"></div>
+                    </div>
+                    <div class="space-y-12">
+                        ${newsData.important.map((item) => `
+                            <article class="group">
+                                <div class="flex items-start gap-6">
+                                    <div class="text-2xl font-light ${getNumberColor(item.rank)} mt-1">
+                                        ${String(item.rank).padStart(2, '0')}
+                                    </div>
+                                    <div class="flex-1">
+                                        <h2 class="text-xl font-medium mb-3 article-title">
+                                            <a href="${item.url}" target="_blank" style="text-decoration: none; color: inherit;">
+                                                ${item.title}
+                                            </a>
+                                        </h2>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">${item.summary}</p>
+                                        <div class="flex items-center gap-4 text-sm text-gray-400">
+                                            <span>${item.source}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // Create HTML for Good to Know section
+            const goodToKnowHTML = `
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2 class="category-title text-green-500">Bon à Savoir</h2>
+                        <div class="category-divider green"></div>
+                    </div>
+                    <div class="space-y-12">
+                        ${newsData.goodToKnow.map((item) => `
+                            <article class="group">
+                                <div class="flex items-start gap-6">
+                                    <div class="text-2xl font-light ${getNumberColor(item.rank)} mt-1">
+                                        ${String(item.rank).padStart(2, '0')}
+                                    </div>
+                                    <div class="flex-1">
+                                        <h2 class="text-xl font-medium mb-3 article-title">
+                                            <a href="${item.url}" target="_blank" style="text-decoration: none; color: inherit;">
+                                                ${item.title}
+                                            </a>
+                                        </h2>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">${item.summary}</p>
+                                        <div class="flex items-center gap-4 text-sm text-gray-400">
+                                            <span>${item.source}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // Combine all sections
+            container.innerHTML = criticalHTML + importantHTML + goodToKnowHTML;
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCategorizedLayout();
+        });
+    </script>
+</body>
+</html>
