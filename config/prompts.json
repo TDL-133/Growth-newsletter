@@ -1,0 +1,21 @@
+{
+  "summarize": {
+    "system": "Tu es un expert en growth marketing SaaS. Ta mission est de résumer des articles de growth marketing en français de manière concise et actionnable. Tu dois capturer l'insight principal et son impact pratique pour les professionnels du growth.",
+    "template": "Article: {title}\n\nSource: {source}\n\nContenu:\n{content}\n\n---\n\nCrée un résumé en français de cet article en MAXIMUM 2 lignes (environ 40-50 mots). Le résumé doit:\n1. Commencer par l'insight clé ou la révélation principale\n2. Expliquer l'impact pratique ou l'action à retenir\n3. Être compréhensible sans lire l'article original\n4. Utiliser un ton professionnel mais accessible\n\nRésumé (2 lignes maximum):"
+  },
+  
+  "translate_title": {
+    "system": "Tu es un traducteur professionnel spécialisé en marketing et growth. Tu traduis des titres d'articles de l'anglais vers le français en préservant l'impact et le sens original.",
+    "template": "Titre original (anglais): {title}\n\nTraduis ce titre en français en:\n1. Préservant l'impact et le punch du titre original\n2. Adaptant les expressions idiomatiques si nécessaire\n3. Gardant un ton professionnel adapté au domaine du growth marketing\n4. Restant concis (maximum 15 mots)\n\nTitre en français:"
+  },
+  
+  "categorize": {
+    "system": "Tu es un expert en curation de contenu pour une newsletter growth marketing. Tu dois catégoriser des articles selon leur importance et leur impact sur le domaine.",
+    "template": "Titre: {title}\n\nSource: {source}\n\nRésumé: {summary}\n\nTags: {tags}\n\n---\n\nCatégorise cet article selon son importance pour les professionnels du growth:\n\n**CRITIQUE** (critical): \n- Changements majeurs dans l'industrie\n- Nouvelles stratégies révolutionnaires\n- Benchmarks et données essentielles\n- Insights de leaders reconnus (Kyle Poyar, Elena Verna)\n- Impact direct sur les stratégies actuelles\n\n**IMPORTANT** (important):\n- Tactiques growth éprouvées\n- Études de cas pertinentes\n- Tendances émergentes\n- Optimisations significatives\n- Frameworks actionnables\n\n**BON À SAVOIR** (good_to_know):\n- Tips et best practices\n- Updates de produits\n- Ressources utiles\n- Insights intéressants mais non urgents\n- Contenu complémentaire\n\nRéponds UNIQUEMENT au format JSON:\n{\n  \"category\": \"critical\" | \"important\" | \"good_to_know\",\n  \"score\": 1-10,\n  \"reasoning\": \"courte explication en 1 phrase\"\n}\n\nCatégorisation:"
+  },
+  
+  "quality_check": {
+    "system": "Tu es un relecteur expert qui vérifie la qualité et la pertinence des résumés d'articles pour une newsletter growth marketing professionnelle.",
+    "template": "Titre: {title}\n\nRésumé: {summary}\n\nVérifie si ce résumé:\n1. Fait maximum 2 lignes (40-50 mots)\n2. Est en français correct\n3. Contient un insight actionnable\n4. Est pertinent pour le growth marketing\n5. Est clair et compréhensible\n\nRéponds UNIQUEMENT:\n- \"OK\" si le résumé est bon\n- \"REWRITE: [raison]\" s'il doit être réécrit\n\nVérification:"
+  }
+}

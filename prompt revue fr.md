@@ -32,6 +32,7 @@ Growth with Sean Ellis, https://seanellis.substack.com/
 Indie Hackers, https://www.indiehackers.com/
 TLDR Marketing, https://tldr.tech/
 Amanda at SparkToro, https://sparktoro.com/audience-research-newsletter
+User Pilot blog, https://userpilot.com/blog/category/growth/
 I trust you to do a balanced summary with all the sources : this is very important
 
 Use the revue fr template.html file as a template

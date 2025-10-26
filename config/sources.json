@@ -1,0 +1,177 @@
+{
+  "sources": [
+    {
+      "name": "Kyle Poyar",
+      "display_name": "Kyle Poyar / Growth Unhinged",
+      "type": "substack",
+      "url": "https://www.growthunhinged.com/archive",
+      "scrape_method": "firecrawl_scrape",
+      "priority": "high",
+      "tags": ["pricing", "plg", "pls", "benchmarks", "ai"],
+      "enabled": true
+    },
+    {
+      "name": "Elena Verna",
+      "display_name": "Elena Verna / Growth Scoop",
+      "type": "substack",
+      "url": "https://www.elenaverna.com/archive",
+      "scrape_method": "firecrawl_scrape",
+      "priority": "high",
+      "tags": ["activation", "retention", "plg", "b2b"],
+      "enabled": true
+    },
+    {
+      "name": "Demand Curve",
+      "display_name": "Demand Curve",
+      "type": "blog",
+      "url": "https://www.demandcurve.com/blog",
+      "scrape_method": "firecrawl_scrape",
+      "priority": "high",
+      "tags": ["marketing", "growth-tactics", "conversion", "ads"],
+      "enabled": true
+    },
+    {
+      "name": "Maja Voje",
+      "display_name": "Maja Voje / GTM Strategist",
+      "type": "website",
+      "url": "https://knowledge.gtmstrategist.com/",
+      "scrape_method": "tavily-search",
+      "search_query": "Maja Voje GTM strategy growth",
+      "priority": "medium",
+      "tags": ["gtm", "strategy", "b2b"],
+      "enabled": true
+    },
+    {
+      "name": "Timothe Frin",
+      "display_name": "Timothe / How They Build",
+      "type": "substack",
+      "url": "https://timfrin.substack.com/archive",
+      "scrape_method": "firecrawl_scrape",
+      "priority": "medium",
+      "tags": ["product", "building", "case-studies"],
+      "enabled": true
+    },
+    {
+      "name": "Kate Syuma",
+      "display_name": "Kate Syuma / Growth Mates",
+      "type": "newsletter",
+      "url": "https://www.growthmates.news/",
+      "scrape_method": "firecrawl_scrape",
+      "priority": "medium",
+      "tags": ["growth", "marketing", "community"],
+      "enabled": true
+    },
+    {
+      "name": "Ben Sailer",
+      "display_name": "Ben / Next Play",
+      "type": "substack",
+      "url": "https://nextplayso.substack.com/archive",
+      "scrape_method": "firecrawl_scrape",
+      "priority": "medium",
+      "tags": ["saas", "growth", "strategy"],
+      "enabled": true
+    },
+    {
+      "name": "Yann Leonardi",
+      "display_name": "Yann Leonardi / La GROWTH Semaine",
+      "type": "substack",
+      "url": "https://lagrowthsemaine.substack.com/archive",
+      "scrape_method": "firecrawl_scrape",
+      "priority": "high",
+      "tags": ["growth", "french", "marketing"],
+      "enabled": true
+    },
+    {
+      "name": "Sean Ellis",
+      "display_name": "Sean Ellis / Growth Hacking",
+      "type": "substack",
+      "url": "https://seanellis.substack.com/archive",
+      "scrape_method": "firecrawl_scrape",
+      "priority": "medium",
+      "tags": ["growth-hacking", "product", "marketing"],
+      "enabled": true
+    },
+    {
+      "name": "Indie Hackers",
+      "display_name": "Indie Hackers",
+      "type": "website",
+      "url": "https://www.indiehackers.com/",
+      "scrape_method": "tavily-search",
+      "search_query": "Indie Hackers growth stories bootstrapping",
+      "priority": "medium",
+      "tags": ["bootstrapping", "indie", "startups"],
+      "enabled": true
+    },
+    {
+      "name": "TLDR Marketing",
+      "display_name": "TLDR Marketing",
+      "type": "newsletter",
+      "url": "https://tldr.tech/marketing",
+      "scrape_method": "tavily-search",
+      "search_query": "TLDR marketing newsletter growth",
+      "priority": "medium",
+      "tags": ["marketing", "news", "tech"],
+      "enabled": true
+    },
+    {
+      "name": "Amanda Natividad",
+      "display_name": "Amanda / SparkToro",
+      "type": "newsletter",
+      "url": "https://sparktoro.com/audience-research-newsletter",
+      "scrape_method": "tavily-search",
+      "search_query": "Amanda Natividad SparkToro audience research",
+      "priority": "medium",
+      "tags": ["audience", "research", "marketing"],
+      "enabled": true
+    },
+    {
+      "name": "Kevin DePopas",
+      "display_name": "Kevin DePopas",
+      "type": "search",
+      "url": "",
+      "scrape_method": "tavily-search",
+      "search_query": "Kevin DePopas growth marketing",
+      "priority": "low",
+      "tags": ["growth", "marketing"],
+      "enabled": true
+    },
+    {
+      "name": "The Growth Newsletter",
+      "display_name": "The Growth Newsletter",
+      "type": "search",
+      "url": "",
+      "scrape_method": "tavily-search",
+      "search_query": "The Growth Newsletter SaaS growth",
+      "priority": "low",
+      "tags": ["growth", "saas"],
+      "enabled": true
+    }
+  ],
+  
+  "scraping_config": {
+    "lookback_days": 7,
+    "max_articles_per_source": 5,
+    "min_article_length": 500,
+    "language_filter": ["en", "fr"],
+    "timeout_seconds": 30,
+    "retry_attempts": 2
+  },
+  
+  "balance_rules": {
+    "min_sources_represented": 10,
+    "max_articles_per_source": 3,
+    "total_articles": 25,
+    "category_distribution": {
+      "critical": 8,
+      "important": 8,
+      "good_to_know": 9
+    }
+  },
+  
+  "output_config": {
+    "newsletter_title": "Growth Weekly",
+    "byline": "by Dagorsey & Claude",
+    "language": "fr",
+    "date_format": "%d %B %Y"
+  }
+}

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Weekly Newsletter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: #111827;
+            background-color: white;
+        }
+
+        /* Container */
+        .min-h-screen { min-height: 100vh; }
+        .max-w-3xl { max-width: 48rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        
+        /* Spacing */
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-16 { margin-bottom: 4rem; }
+        .mt-1 { margin-top: 0.25rem; }
+        
+        /* Typography */
+        .text-center { text-align: center; }
+        .text-xs { font-size: 0.75rem; line-height: 1rem; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .font-light { font-weight: 300; }
+        .font-medium { font-weight: 500; }
+        .leading-relaxed { line-height: 1.625; }
+        
+        /* Colors */
+        .text-gray-400 { color: #9ca3af; }
+        .text-gray-500 { color: #6b7280; }
+        .text-gray-600 { color: #4b5556; }
+        
+        /* Category colors */
+        .text-red-500 { color: #ef4444; }
+        .text-yellow-500 { color: #eab308; }
+        .text-green-500 { color: #22c55e; }
+        
+        /* Subtitle styling */
+        .subtitle {
+            font-style: italic;
+            color: #6b7280;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Category section styling */
+        .category-section {
+            margin-bottom: 3rem;
+        }
+        
+        .category-header {
+            margin-bottom: 2rem;
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-divider {
+            height: 2px;
+            width: 3rem;
+        }
+        
+        .category-divider.red { background-color: #ef4444; }
+        .category-divider.yellow { background-color: #eab308; }
+        .category-divider.green { background-color: #22c55e; }
+        
+        /* Layout */
+        .flex { display: flex; }
+        .flex-1 { flex: 1 1 0%; }
+        .items-start { align-items: flex-start; }
+        .items-center { align-items: center; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .space-y-12 > * + * { margin-top: 3rem; }
+        
+        /* Divider */
+        .divider {
+            width: 4rem;
+            height: 1px;
+            background-color: #d1d5db;
+            margin: 1rem auto;
+        }
+        
+        /* Article styling */
+        .group {
+            transition: all 0.2s ease;
+        }
+        
+        .group:hover .article-title {
+            color: #2563eb;
+        }
+        
+        .article-title {
+            transition: color 0.2s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        article {
+            animation: fadeIn 0.5s ease-out forwards;
+            animation-fill-mode: both;
+        }
+        
+        article:nth-child(1) { animation-delay: 0.1s; }
+        article:nth-child(2) { animation-delay: 0.2s; }
+        article:nth-child(3) { animation-delay: 0.3s; }
+        article:nth-child(4) { animation-delay: 0.4s; }
+        article:nth-child(5) { animation-delay: 0.5s; }
+        article:nth-child(6) { animation-delay: 0.6s; }
+        article:nth-child(7) { animation-delay: 0.7s; }
+        article:nth-child(8) { animation-delay: 0.8s; }
+        article:nth-child(9) { animation-delay: 0.9s; }
+        article:nth-child(10) { animation-delay: 1.0s; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .px-8 { padding-left: 1rem; padding-right: 1rem; }
+            .py-16 { padding-top: 2rem; padding-bottom: 2rem; }
+            .text-4xl { font-size: 1.875rem; }
+            .text-xl { font-size: 1.125rem; }
+            .mb-16 { margin-bottom: 2rem; }
+            .space-y-12 > * + * { margin-top: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen">
+        <div class="max-w-3xl mx-auto px-8 py-16">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <h1 class="text-4xl font-light mb-4">AI Weekly</h1>
+                <p class="subtitle">by Dagorsey & Claude</p>
+                <div class="divider"></div>
+                <p class="text-gray-500">May 24, 2025</p>
+            </div>
+
+            <!-- Content -->
+            <div id="minimal-news-container">
+                <!-- News items will be populated here by categories -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // News data organized by categories
+        const newsData = {
+            critical: [
+                {
+                    id: "1",
+                    title: "ChatGPT-5 Leaked: Achieves AGI Milestone with 95% Human-Level Performance",
+                    summary: "Internal OpenAI documents reveal ChatGPT-5 has achieved artificial general intelligence, scoring 95% on comprehensive cognitive tests. The model demonstrates unprecedented reasoning, creativity, and problem-solving across all domains.",
+                    category: "AI Development",
+                    rank: 1,
+                    source: "OpenAI / The Information",
+                    timeAgo: "10 min ago"
+                },
+                {
+                    id: "2",
+                    title: "Meta Announces Open-Source AGI Model: Llama 5 to Rival GPT-5",
+                    summary: "Meta's Llama 5 will be fully open-source AGI, challenging OpenAI's closed approach. Mark Zuckerberg claims this will democratize artificial general intelligence and accelerate global AI development by 10x.",
+                    category: "Industry News",
+                    rank: 2,
+                    source: "Meta / TechCrunch",
+                    timeAgo: "25 min ago"
+                },
+                {
+                    id: "3",
+                    title: "Google DeepMind Cracks Protein Folding for All Human Diseases",
+                    summary: "AlphaFold 4 successfully predicts protein structures for every known human disease, potentially revolutionizing drug discovery. Scientists estimate this could accelerate medical breakthroughs by 50-100 years.",
+                    category: "Research",
+                    rank: 3,
+                    source: "DeepMind / Nature",
+                    timeAgo: "45 min ago"
+                },
+                {
+                    id: "4",
+                    title: "Apple Unveils Neural Chip: 1000x Faster Than Current AI Processors",
+                    summary: "Apple's M5 Neural Engine achieves unprecedented AI performance with quantum-inspired architecture. The chip enables real-time AGI inference on mobile devices while consuming 90% less power.",
+                    category: "Hardware",
+                    rank: 4,
+                    source: "Apple / The Verge",
+                    timeAgo: "1 hour ago"
+                },
+                {
+                    id: "5",
+                    title: "EU Passes Landmark AI Rights Act: AI Systems Get Legal Personhood",
+                    summary: "European Parliament grants limited legal rights to advanced AI systems. The legislation requires AI consent for training data use and establishes AI welfare standards, reshaping global AI governance.",
+                    category: "Regulation",
+                    rank: 5,
+                    source: "EU Parliament / Reuters",
+                    timeAgo: "2 hours ago"
+                },
+                {
+                    id: "6",
+                    title: "Tesla's Optimus Robots Begin Mass Production: 10 Million Units by 2026",
+                    summary: "Tesla starts mass production of Optimus humanoid robots at $20,000 per unit. Elon Musk projects robots will outnumber humans by 2040, fundamentally transforming the global workforce.",
+                    category: "Robotics",
+                    rank: 6,
+                    source: "Tesla / Bloomberg",
+                    timeAgo: "3 hours ago"
+                },
+                {
+                    id: "7",
+                    title: "Amazon's AI Predicts Customer Needs Before They Know Them",
+                    summary: "Amazon's new predictive AI achieves 92% accuracy in anticipating customer purchases weeks in advance. The system pre-ships products to local warehouses, enabling same-hour delivery.",
+                    category: "E-commerce",
+                    rank: 7,
+                    source: "Amazon / WSJ",
+                    timeAgo: "3.5 hours ago"
+                },
+                {
+                    id: "8",
+                    title: "IBM's Quantum AI Solves Climate Change: $10/ton Carbon Capture",
+                    summary: "IBM's quantum AI system designs revolutionary carbon capture technology that can remove 1 billion tons of CO2 annually at $10/ton. Implementation could reverse climate change within 20 years.",
+                    category: "Climate Tech",
+                    rank: 8,
+                    source: "IBM / Science",
+                    timeAgo: "4 hours ago"
+                }
+            ],
+            important: [
+                {
+                    id: "9",
+                    title: "Microsoft Copilot 3.0 Integrates with Every Software Application",
+                    summary: "New Copilot version works seamlessly across all desktop applications, not just Microsoft products. Universal AI assistant can automate complex workflows across Adobe, Google, and third-party software.",
+                    category: "Productivity",
+                    rank: 9,
+                    source: "Microsoft / Verge",
+                    timeAgo: "5 hours ago"
+                },
+                {
+                    id: "10",
+                    title: "Anthropic's Constitutional AI Prevents All Harmful Outputs",
+                    summary: "Claude 4.5 achieves 99.9% safety rate using new Constitutional AI framework. The system can engage with sensitive topics while maintaining ethical boundaries, solving AI alignment concerns.",
+                    category: "AI Safety",
+                    rank: 10,
+                    source: "Anthropic / AI Safety Institute",
+                    timeAgo: "6 hours ago"
+                },
+                {
+                    id: "11",
+                    title: "Nvidia Announces H200: World's First Trillion-Parameter GPU",
+                    summary: "H200 GPU enables training of trillion-parameter models on a single chip. Performance leap makes AGI development accessible to startups, breaking big tech's monopoly on advanced AI.",
+                    category: "Hardware",
+                    rank: 11,
+                    source: "Nvidia / AnandTech",
+                    timeAgo: "8 hours ago"
+                },
+                {
+                    id: "12",
+                    title: "GitHub Copilot X Writes Entire Applications from Descriptions",
+                    summary: "New version generates complete, production-ready applications from natural language. Developers report 10x productivity gains as AI handles architecture, testing, and deployment.",
+                    category: "Development",
+                    rank: 12,
+                    source: "GitHub / Hacker News",
+                    timeAgo: "10 hours ago"
+                },
+                {
+                    id: "13",
+                    title: "China's Baidu Achieves Quantum Supremacy in AI Training",
+                    summary: "Baidu's quantum computer trains AI models 1 million times faster than classical systems. Breakthrough enables real-time training of multimodal models with trillions of parameters.",
+                    category: "Quantum Computing",
+                    rank: 13,
+                    source: "Baidu / South China Morning Post",
+                    timeAgo: "12 hours ago"
+                },
+                {
+                    id: "14",
+                    title: "Stanford Creates AI That Learns Like Human Children",
+                    summary: "New developmental AI acquires knowledge through curiosity and play, matching 5-year-old cognitive abilities. System learns new concepts from single examples without massive datasets.",
+                    category: "Research",
+                    rank: 14,
+                    source: "Stanford AI Lab / MIT Tech Review",
+                    timeAgo: "14 hours ago"
+                },
+                {
+                    id: "15",
+                    title: "Spotify's AI DJ Becomes #1 Radio Host Globally",
+                    summary: "AI DJ surpasses human radio hosts in listener engagement and retention. Personalized AI creates unique shows for each user, revolutionizing audio entertainment industry.",
+                    category: "Entertainment",
+                    rank: 15,
+                    source: "Spotify / Billboard",
+                    timeAgo: "16 hours ago"
+                },
+                {
+                    id: "16",
+                    title: "AI Lawyers Win 87% of Cases Against Human Legal Teams",
+                    summary: "CaseLaw AI demonstrates superior performance in contract analysis, legal research, and case strategy. Major law firms begin replacing junior associates with AI systems for routine legal work.",
+                    category: "Legal Tech",
+                    rank: 16,
+                    source: "LegalTech News / ABA Journal",
+                    timeAgo: "18 hours ago"
+                }
+            ],
+            goodToKnow: [
+                {
+                    id: "17",
+                    title: "Stable Diffusion 4.0 Generates Photorealistic Images in Real-Time",
+                    summary: "New image generation model creates 4K photorealistic images in under 1 second on consumer hardware. Open-source release democratizes high-quality image generation for creators worldwide.",
+                    category: "Open Source",
+                    rank: 17,
+                    source: "Stability AI / GitHub",
+                    timeAgo: "20 hours ago"
+                },
+                {
+                    id: "18",
+                    title: "ChatGPT Voice Mode Now Supports 100 Languages",
+                    summary: "OpenAI expands voice capabilities to 100 languages with natural conversation flow. Real-time translation feature enables seamless communication across language barriers.",
+                    category: "Features",
+                    rank: 18,
+                    source: "OpenAI / TechCrunch",
+                    timeAgo: "1 day ago"
+                },
+                {
+                    id: "19",
+                    title: "Adobe's AI Music Composer Creates Studio-Quality Tracks",
+                    summary: "Adobe Firefly Audio generates professional music compositions across all genres from text descriptions. Musicians and content creators gain access to royalty-free, customizable soundtracks.",
+                    category: "Creative Tools",
+                    rank: 19,
+                    source: "Adobe / Music Radar",
+                    timeAgo: "1 day ago"
+                },
+                {
+                    id: "20",
+                    title: "Zoom's AI Avatar Attends Meetings for You",
+                    summary: "New feature creates realistic AI avatars that can participate in meetings autonomously. System takes notes, asks relevant questions, and provides summaries while you focus on other tasks.",
+                    category: "Productivity",
+                    rank: 20,
+                    source: "Zoom / The Information",
+                    timeAgo: "1.5 days ago"
+                },
+                {
+                    id: "21",
+                    title: "Duolingo AI Tutor Achieves Native-Level Language Teaching",
+                    summary: "AI language tutor adapts to individual learning styles, achieving 3x faster fluency than traditional methods. Conversational AI provides unlimited practice with native-speaker accuracy.",
+                    category: "Education",
+                    rank: 21,
+                    source: "Duolingo / EdTech Magazine",
+                    timeAgo: "2 days ago"
+                },
+                {
+                    id: "22",
+                    title: "Midjourney 7 Adds Video Generation with Cinematic Quality",
+                    summary: "Latest update brings 4K video generation at 60fps with Hollywood-level cinematography. AI director mode automatically creates complete scenes from text descriptions.",
+                    category: "Creative Tools",
+                    rank: 22,
+                    source: "Midjourney / Variety",
+                    timeAgo: "2 days ago"
+                },
+                {
+                    id: "23",
+                    title: "Notion AI Becomes Full Project Manager",
+                    summary: "AI assistant now manages entire projects autonomously: creating tasks, assigning deadlines, and coordinating team workflows. Integration with Slack and email enables complete automation.",
+                    category: "Productivity",
+                    rank: 23,
+                    source: "Notion / ProductHunt",
+                    timeAgo: "2.5 days ago"
+                },
+                {
+                    id: "24",
+                    title: "RunwayML Launches Text-to-Film: Create Movies from Scripts",
+                    summary: "New AI system generates complete films from screenplays, including scenes, characters, and cinematography. Independent filmmakers can now produce feature-length films without crews or equipment.",
+                    category: "Entertainment",
+                    rank: 24,
+                    source: "RunwayML / Hollywood Reporter",
+                    timeAgo: "3 days ago"
+                },
+                {
+                    id: "25",
+                    title: "Grammarly AI Now Writes in Your Personal Style",
+                    summary: "Advanced AI learns your unique writing voice and maintains consistency across all documents. Professional writers report AI captures their style with 95% accuracy after analyzing 10 samples.",
+                    category: "Writing Tools",
+                    rank: 25,
+                    source: "Grammarly / Writer's Digest",
+                    timeAgo: "3 days ago"
+                }
+            ]
+        };
+
+        // Function to get number color based on category
+        function getNumberColor(rank) {
+            if (rank <= 8) return 'text-red-500';
+            if (rank <= 16) return 'text-yellow-500';
+            return 'text-green-500';
+        }
+
+        // Render function for categorized layout
+        function renderCategorizedLayout() {
+            const container = document.getElementById('minimal-news-container');
+            
+            // Create HTML for Critical section
+            const criticalHTML = `
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2 class="category-title text-red-500">Critical</h2>
+                        <div class="category-divider red"></div>
+                    </div>
+                    <div class="space-y-12">
+                        ${newsData.critical.map((item) => `
+                            <article class="group">
+                                <div class="flex items-start gap-6">
+                                    <div class="text-2xl font-light ${getNumberColor(item.rank)} mt-1">
+                                        ${String(item.rank).padStart(2, '0')}
+                                    </div>
+                                    <div class="flex-1">
+                                        <h2 class="text-xl font-medium mb-3 article-title">
+                                            ${item.title}
+                                        </h2>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">${item.summary}</p>
+                                        <div class="flex items-center gap-4 text-sm text-gray-400">
+                                            <span>${item.source}</span>
+                                            <span>â€¢</span>
+                                            <span>${item.timeAgo}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // Create HTML for Important section
+            const importantHTML = `
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2 class="category-title text-yellow-500">Important</h2>
+                        <div class="category-divider yellow"></div>
+                    </div>
+                    <div class="space-y-12">
+                        ${newsData.important.map((item) => `
+                            <article class="group">
+                                <div class="flex items-start gap-6">
+                                    <div class="text-2xl font-light ${getNumberColor(item.rank)} mt-1">
+                                        ${String(item.rank).padStart(2, '0')}
+                                    </div>
+                                    <div class="flex-1">
+                                        <h2 class="text-xl font-medium mb-3 article-title">
+                                            ${item.title}
+                                        </h2>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">${item.summary}</p>
+                                        <div class="flex items-center gap-4 text-sm text-gray-400">
+                                            <span>${item.source}</span>
+                                            <span>â€¢</span>
+                                            <span>${item.timeAgo}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // Create HTML for Good to Know section
+            const goodToKnowHTML = `
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2 class="category-title text-green-500">Good to Know</h2>
+                        <div class="category-divider green"></div>
+                    </div>
+                    <div class="space-y-12">
+                        ${newsData.goodToKnow.map((item) => `
+                            <article class="group">
+                                <div class="flex items-start gap-6">
+                                    <div class="text-2xl font-light ${getNumberColor(item.rank)} mt-1">
+                                        ${String(item.rank).padStart(2, '0')}
+                                    </div>
+                                    <div class="flex-1">
+                                        <h2 class="text-xl font-medium mb-3 article-title">
+                                            ${item.title}
+                                        </h2>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">${item.summary}</p>
+                                        <div class="flex items-center gap-4 text-sm text-gray-400">
+                                            <span>${item.source}</span>
+                                            <span>â€¢</span>
+                                            <span>${item.timeAgo}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // Combine all sections
+            container.innerHTML = criticalHTML + importantHTML + goodToKnowHTML;
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCategorizedLayout();
+        });
+    </script>
+</body>
+</html>
