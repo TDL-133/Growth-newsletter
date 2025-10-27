@@ -1,0 +1,127 @@
+# Configuration des sources pour Growth Weekly
+# Format: Liste de newsletters avec leurs patterns de recherche Gmail et URLs de fallback
+
+sources:
+  - name: "TLDR Marketing"
+    gmail_from: "dan@tldr.tech"
+    gmail_subject_pattern: "TLDR Marketing"
+    fallback_url: "https://tldr.tech/marketing"
+    priority: high
+    
+  - name: "Elena Verna"
+    gmail_from: "elena@substack.com"
+    gmail_subject_pattern: "Growth Scoop"
+    fallback_urls:
+      - "https://substack.com/@plggrowth"
+      - "https://www.elenaverna.com/"
+    priority: high
+    
+  - name: "Demand Curve"
+    gmail_from: "team@demandcurve.com"
+    gmail_subject_pattern: "Demand Curve"
+    fallback_urls:
+      - "https://www.demandcurve.com/newsletter"
+      - "https://www.demandcurve.com/blog"
+      - "https://www.demandcurve.com/playbooks"
+    priority: high
+    
+  - name: "Maja Voje"
+    gmail_from: "maja@gtmstrategist.com"
+    gmail_subject_pattern: "GTM Strategist"
+    fallback_url: "https://knowledge.gtmstrategist.com/"
+    priority: medium
+    
+  - name: "Kyle Poyar"
+    gmail_from: "kyle@growthunhinged.com"
+    gmail_subject_pattern: "Growth Unhinged"
+    fallback_url: "https://www.growthunhinged.com/"
+    priority: high
+    
+  - name: "Timothe Frisson"
+    gmail_from: "timfrin@substack.com"
+    gmail_subject_pattern: "How They Build"
+    fallback_url: "https://timfrin.substack.com/"
+    priority: medium
+    
+  - name: "Kate Syuma"
+    gmail_from: "kate@growthmates.news"
+    gmail_subject_pattern: "Growth Mates"
+    fallback_url: "https://www.growthmates.news/"
+    priority: medium
+    
+  - name: "Ben Yoskovitz"
+    gmail_from: "ben@nextplayso.com"
+    gmail_subject_pattern: "Next Play"
+    fallback_url: "https://nextplayso.substack.com/"
+    priority: medium
+    
+  - name: "Kevin DePopas"
+    gmail_from: "kevin@depopas.com"
+    gmail_subject_pattern: "Growth Newsletter"
+    fallback_url: null
+    priority: medium
+    
+  - name: "The Growth Newsletter"
+    gmail_from: "newsletter@growth.com"
+    gmail_subject_pattern: "Growth Newsletter"
+    fallback_url: null
+    priority: medium
+    
+  - name: "Yann Leonardi"
+    gmail_from: "yann@lagrowthsemaine.com"
+    gmail_subject_pattern: "La GROWTH Semaine"
+    fallback_url: "https://lagrowthsemaine.substack.com/"
+    priority: high
+    language: fr
+    
+  - name: "Sean Ellis"
+    gmail_from: "sean@growthhackers.com"
+    gmail_subject_pattern: "Growth with Sean Ellis"
+    fallback_url: "https://seanellis.substack.com/"
+    priority: medium
+    
+  - name: "Indie Hackers"
+    gmail_from: "hello@indiehackers.com"
+    gmail_subject_pattern: "Indie Hackers"
+    fallback_url: "https://www.indiehackers.com/"
+    priority: low
+    
+  - name: "Amanda Natividad"
+    gmail_from: "amanda@sparktoro.com"
+    gmail_subject_pattern: "SparkToro"
+    fallback_url: "https://sparktoro.com/audience-research-newsletter"
+    priority: medium
+
+# Configuration de recherche Gmail
+gmail_search:
+  lookback_days: 21  # Rechercher les emails des 3 dernières semaines
+  max_results_per_source: 5
+  labels:
+    - "INBOX"
+  exclude_labels:
+    - "SPAM"
+    - "TRASH"
+
+# Configuration de l'équilibrage
+balancing:
+  min_articles_total: 25
+  max_articles_per_source: 3
+  distribution:
+    critical: 8
+    important: 8
+    good_to_know: 9
+
+# Configuration des catégories
+categories:
+  critical:
+    color: "#ef4444"
+    rank_range: [1, 8]
+    description: "News les plus importantes de la semaine"
+  important:
+    color: "#f59e0b"
+    rank_range: [9, 16]
+    description: "News significatives à connaître"
+  good_to_know:
+    color: "#10b981"
+    rank_range: [17, 25]
+    description: "News intéressantes pour rester informé"

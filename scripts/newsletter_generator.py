@@ -1,175 +1,251 @@
 #!/usr/bin/env python3
 """
-Growth Weekly Newsletter Generator
-Génère automatiquement la newsletter Growth Weekly en français
-
-Usage:
-    python newsletter_generator.py --auto
-    python newsletter_generator.py --end-date 2025-10-26
-    python newsletter_generator.py --dry-run
+Newsletter Generator - Script principal
+Orchestre tout le workflow de génération de la newsletter Growth Weekly
 """
 
-import sys
 import os
+import sys
+import logging
 import json
-import argparse
-from datetime import datetime, timedelta
-from pathlib import Path
-
-# Add parent directory to path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent))
-
-from loguru import logger
+from datetime import datetime
 from dotenv import load_dotenv
 
-# Load environment variables
+# Ajouter le répertoire parent au path pour les imports
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from scripts.gmail_scraper import GmailScraper
+from scripts.ai_processor import AIProcessor
+from scripts.html_builder import HTMLBuilder
+
+# Charger les variables d'environnement
 load_dotenv()
 
-# Configure logging
-logger.remove()
-logger.add(sys.stderr, level=os.getenv('LOG_LEVEL', 'INFO'))
-if log_file := os.getenv('LOG_FILE'):
-    logger.add(log_file, rotation="10 MB")
+# Configuration du logging
+log_level = os.getenv('LOG_LEVEL', 'INFO')
+log_file = os.getenv('LOG_FILE', 'logs/newsletter_generator.log')
+
+os.makedirs(os.path.dirname(log_file), exist_ok=True)
+
+logging.basicConfig(
+    level=getattr(logging, log_level),
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(log_file),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
 
 
-def load_config(config_file='config/sources.json'):
-    """Charge la configuration des sources"""
-    config_path = Path(__file__).parent.parent / config_file
-    with open(config_path, 'r', encoding='utf-8') as f:
-        return json.load(f)
-
-
-def get_week_dates(end_date=None):
-    """
-    Calcule les dates de début et fin de semaine
+class NewsletterGenerator:
+    """Générateur de newsletter Growth Weekly"""
     
-    Args:
-        end_date: Date de fin (format YYYY-MM-DD) ou None pour semaine dernière
+    def __init__(self):
+        """Initialise le générateur"""
+        logger.info("=" * 80)
+        logger.info("🚀 DÉMARRAGE DU GÉNÉRATEUR DE NEWSLETTER GROWTH WEEKLY")
+        logger.info("=" * 80)
+        
+        self.scraper = None
+        self.ai_processor = None
+        self.html_builder = None
+        
+        # Créer le dossier cache si nécessaire
+        cache_dir = os.getenv('CACHE_DIR', 'cache')
+        os.makedirs(cache_dir, exist_ok=True)
     
-    Returns:
-        tuple: (start_date, end_date) as datetime objects
-    """
-    if end_date:
-        end = datetime.strptime(end_date, '%Y-%m-%d')
-    else:
-        # Dernière semaine complète (dimanche à samedi)
-        today = datetime.now()
-        days_since_sunday = (today.weekday() + 1) % 7
-        end = today - timedelta(days=days_since_sunday + 1)
+    def run(self, use_cache: bool = False):
+        """
+        Exécute le workflow complet de génération
+        
+        Args:
+            use_cache: Utiliser les données en cache si disponibles
+        """
+        try:
+            # Étape 1: Scraping Gmail
+            emails_by_source = self._step_1_scrape_emails(use_cache)
+            
+            # Étape 2: Traitement IA
+            all_articles = self._step_2_process_with_ai(emails_by_source, use_cache)
+            
+            # Étape 3: Classement et catégorisation
+            ranked_articles = self._step_3_rank_and_categorize(all_articles, use_cache)
+            
+            # Étape 4: Génération HTML
+            output_path = self._step_4_generate_html(ranked_articles)
+            
+            # Résumé final
+            self._print_summary(ranked_articles, output_path)
+            
+            logger.info("=" * 80)
+            logger.info("✅ GÉNÉRATION TERMINÉE AVEC SUCCÈS")
+            logger.info("=" * 80)
+            
+            return output_path
+            
+        except Exception as e:
+            logger.error(f"❌ ERREUR LORS DE LA GÉNÉRATION: {e}", exc_info=True)
+            raise
     
-    start = end - timedelta(days=6)
-    return start, end
+    def _step_1_scrape_emails(self, use_cache: bool = False) -> dict:
+        """Étape 1: Scraping des emails depuis Gmail"""
+        logger.info("\n" + "=" * 80)
+        logger.info("ÉTAPE 1/4: SCRAPING DES EMAILS GMAIL")
+        logger.info("=" * 80)
+        
+        cache_file = 'cache/emails.json'
+        
+        if use_cache and os.path.exists(cache_file):
+            logger.info(f"📦 Chargement des emails depuis le cache: {cache_file}")
+            with open(cache_file, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        
+        # Initialiser le scraper
+        self.scraper = GmailScraper()
+        
+        # Scraper toutes les sources
+        emails_by_source = self.scraper.scrape_all_sources()
+        
+        # Sauvegarder en cache
+        with open(cache_file, 'w', encoding='utf-8') as f:
+            json.dump(emails_by_source, f, ensure_ascii=False, indent=2)
+        logger.info(f"💾 Emails sauvegardés en cache: {cache_file}")
+        
+        return emails_by_source
+    
+    def _step_2_process_with_ai(self, emails_by_source: dict, use_cache: bool = False) -> list:
+        """Étape 2: Traitement avec l'IA"""
+        logger.info("\n" + "=" * 80)
+        logger.info("ÉTAPE 2/4: TRAITEMENT AVEC L'IA (EXTRACTION & TRADUCTION)")
+        logger.info("=" * 80)
+        
+        cache_file = 'cache/articles.json'
+        
+        if use_cache and os.path.exists(cache_file):
+            logger.info(f"📦 Chargement des articles depuis le cache: {cache_file}")
+            with open(cache_file, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        
+        # Initialiser le processeur IA
+        self.ai_processor = AIProcessor()
+        
+        # Traiter tous les emails
+        all_articles = self.ai_processor.process_all_emails(emails_by_source)
+        
+        # Sauvegarder en cache
+        with open(cache_file, 'w', encoding='utf-8') as f:
+            json.dump(all_articles, f, ensure_ascii=False, indent=2)
+        logger.info(f"💾 Articles sauvegardés en cache: {cache_file}")
+        
+        return all_articles
+    
+    def _step_3_rank_and_categorize(self, all_articles: list, use_cache: bool = False) -> list:
+        """Étape 3: Classement et catégorisation"""
+        logger.info("\n" + "=" * 80)
+        logger.info("ÉTAPE 3/4: CLASSEMENT ET CATÉGORISATION")
+        logger.info("=" * 80)
+        
+        cache_file = 'cache/ranked_articles.json'
+        
+        if use_cache and os.path.exists(cache_file):
+            logger.info(f"📦 Chargement des articles classés depuis le cache: {cache_file}")
+            with open(cache_file, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        
+        # Utiliser le même processeur IA pour le classement
+        if not self.ai_processor:
+            self.ai_processor = AIProcessor()
+        
+        # Classer les articles
+        ranked_articles = self.ai_processor.rank_and_categorize(all_articles)
+        
+        # Sauvegarder en cache
+        with open(cache_file, 'w', encoding='utf-8') as f:
+            json.dump(ranked_articles, f, ensure_ascii=False, indent=2)
+        logger.info(f"💾 Articles classés sauvegardés en cache: {cache_file}")
+        
+        return ranked_articles
+    
+    def _step_4_generate_html(self, ranked_articles: list) -> str:
+        """Étape 4: Génération du HTML"""
+        logger.info("\n" + "=" * 80)
+        logger.info("ÉTAPE 4/4: GÉNÉRATION DU HTML")
+        logger.info("=" * 80)
+        
+        # Initialiser le builder HTML
+        self.html_builder = HTMLBuilder()
+        
+        # Générer le HTML
+        output_path = self.html_builder.generate_html(ranked_articles)
+        
+        return output_path
+    
+    def _print_summary(self, ranked_articles: list, output_path: str):
+        """Affiche un résumé de la génération"""
+        logger.info("\n" + "=" * 80)
+        logger.info("📊 RÉSUMÉ DE LA GÉNÉRATION")
+        logger.info("=" * 80)
+        
+        # Compter les articles par catégorie
+        categories_count = {
+            'critical': 0,
+            'important': 0,
+            'good_to_know': 0
+        }
+        
+        sources_count = {}
+        
+        for article in ranked_articles:
+            cat = article.get('category', 'important')
+            if cat in categories_count:
+                categories_count[cat] += 1
+            
+            source = article.get('source', 'Unknown')
+            sources_count[source] = sources_count.get(source, 0) + 1
+        
+        logger.info(f"📰 Total d'articles: {len(ranked_articles)}")
+        logger.info(f"   🔴 Critical: {categories_count['critical']}")
+        logger.info(f"   🟡 Important: {categories_count['important']}")
+        logger.info(f"   🟢 Good to Know: {categories_count['good_to_know']}")
+        
+        logger.info(f"\n📊 Répartition par source:")
+        for source, count in sorted(sources_count.items(), key=lambda x: x[1], reverse=True):
+            logger.info(f"   {source}: {count} article(s)")
+        
+        logger.info(f"\n📄 Fichier généré: {output_path}")
+        logger.info(f"🌐 Ouvrir dans le navigateur: file://{os.path.abspath(output_path)}")
 
 
 def main():
     """Fonction principale"""
-    parser = argparse.ArgumentParser(
-        description='Génère la newsletter Growth Weekly'
-    )
-    parser.add_argument(
-        '--end-date',
-        help='Date de fin de semaine (YYYY-MM-DD)',
-        type=str
-    )
-    parser.add_argument(
-        '--min-articles',
-        help='Nombre minimum d\'articles',
-        type=int,
-        default=25
-    )
-    parser.add_argument(
-        '--output',
-        help='Répertoire de sortie',
-        type=str,
-        default='output/newsletters'
-    )
-    parser.add_argument(
-        '--dry-run',
-        help='Mode test (n\'écrit pas le fichier final)',
-        action='store_true'
-    )
-    parser.add_argument(
-        '--interactive',
-        help='Mode interactif',
-        action='store_true'
-    )
-    parser.add_argument(
-        '--auto',
-        help='Mode automatique (semaine dernière)',
-        action='store_true'
-    )
+    import argparse
+    
+    parser = argparse.ArgumentParser(description='Générateur de newsletter Growth Weekly')
+    parser.add_argument('--use-cache', action='store_true', 
+                       help='Utiliser les données en cache si disponibles')
+    parser.add_argument('--clear-cache', action='store_true',
+                       help='Effacer le cache avant de commencer')
     
     args = parser.parse_args()
     
-    # Mode interactif
-    if args.interactive:
-        logger.info("🎯 Mode interactif activé")
-        end_date_str = input("Date de fin de semaine (YYYY-MM-DD) [dernière semaine]: ").strip()
-        args.end_date = end_date_str if end_date_str else None
-        
-        min_articles_str = input(f"Nombre minimum d'articles [{args.min_articles}]: ").strip()
-        args.min_articles = int(min_articles_str) if min_articles_str else args.min_articles
-        
-        dry_run = input("Mode test? (o/N): ").strip().lower()
-        args.dry_run = dry_run == 'o'
+    # Effacer le cache si demandé
+    if args.clear_cache:
+        import shutil
+        cache_dir = 'cache'
+        if os.path.exists(cache_dir):
+            shutil.rmtree(cache_dir)
+            logger.info("🗑️  Cache effacé")
+        os.makedirs(cache_dir, exist_ok=True)
     
-    # Calcul des dates
-    start_date, end_date = get_week_dates(args.end_date)
-    logger.info(f"📅 Génération pour la semaine: {start_date.strftime('%Y-%m-%d')} à {end_date.strftime('%Y-%m-%d')}")
+    # Générer la newsletter
+    generator = NewsletterGenerator()
+    output_path = generator.run(use_cache=args.use_cache)
     
-    # Chargement de la configuration
-    logger.info("📥 Chargement de la configuration...")
-    config = load_config()
-    enabled_sources = [s for s in config['sources'] if s.get('enabled', True)]
-    logger.info(f"   {len(enabled_sources)} sources activées")
-    
-    # ===== ÉTAPE 1: SCRAPING =====
-    logger.info("\n📥 Étape 1/4: Collecte des sources...")
-    logger.info("   ⚠️  IMPORTANT: Cette version utilise un exemple de données")
-    logger.info("   Pour scraper réellement, vous devez:")
-    logger.info("   1. Configurer votre ANTHROPIC_API_KEY dans .env")
-    logger.info("   2. Implémenter le module scraper.py avec les MCP tools")
-    
-    # Pour l'instant, utilisons les données de la newsletter existante comme exemple
-    raw_articles = []
-    logger.warning("   ⚠️  Mode exemple activé - Utilisation des données pré-existantes")
-    
-    # ===== ÉTAPE 2: TRAITEMENT IA =====
-    logger.info("\n🤖 Étape 2/4: Traitement IA...")
-    logger.info("   ⚠️  Cette étape nécessite l'API Claude (voir .env.example)")
-    
-    # Utiliser les données de la newsletter existante
-    processed_articles = []
-    
-    # ===== ÉTAPE 3: ÉQUILIBRAGE =====
-    logger.info("\n⚖️  Étape 3/4: Équilibrage des sources...")
-    
-    # ===== ÉTAPE 4: GÉNÉRATION HTML =====
-    logger.info("\n📰 Étape 4/4: Génération HTML...")
-    
-    if args.dry_run:
-        logger.info("   🔍 Mode dry-run: Pas de génération de fichier")
-        logger.success("\n✅ Dry-run complété avec succès!")
-        logger.info(f"\n📊 Résumé:")
-        logger.info(f"   • Sources configurées: {len(enabled_sources)}")
-        logger.info(f"   • Semaine: {start_date.strftime('%d/%m/%Y')} - {end_date.strftime('%d/%m/%Y')}")
-        logger.info(f"   • Articles minimum: {args.min_articles}")
-    else:
-        logger.info("   🚧 Pour générer réellement la newsletter:")
-        logger.info("   1. Implémentez scraper.py avec les MCP tools")
-        logger.info("   2. Implémentez ai_processor.py avec l'API Claude")
-        logger.info("   3. Configurez votre .env avec ANTHROPIC_API_KEY")
-        logger.info("\n   📖 Consultez ARCHITECTURE.md pour plus de détails")
-    
-    return 0
+    print(f"\n✅ Newsletter générée avec succès!")
+    print(f"📄 Fichier: {output_path}")
+    print(f"🌐 Ouvrir: file://{os.path.abspath(output_path)}")
 
 
-if __name__ == '__main__':
-    try:
-        sys.exit(main())
-    except KeyboardInterrupt:
-        logger.warning("\n⚠️  Interruption par l'utilisateur")
-        sys.exit(1)
-    except Exception as e:
-        logger.exception(f"❌ Erreur: {e}")
-        sys.exit(1)
+if __name__ == "__main__":
+    main()
