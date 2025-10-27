@@ -44,7 +44,21 @@ cache/
 *.tmp
 .cache/
 
+# Gmail API credentials and tokens (SENSITIVE - DO NOT COMMIT)
+token.pickle
+credentials.json
+.google/
+
+# Test files
+test_*.py
+*_test.yaml
+
+# Backup files
+*.backup
+*.bak
+
 # Output newsletters (optionnel - décommentez si vous ne voulez pas versionner les newsletters générées)
+output/
 # output/newsletters/*.html
 
 # Logs
