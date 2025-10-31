@@ -19,7 +19,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from bs4 import BeautifulSoup
 import yaml
-from scripts.web_scraper import WebScraper
+from scripts.firecrawl_scraper import FirecrawlScraper
 
 # Configuration du logging
 logging.basicConfig(
@@ -44,7 +44,7 @@ class GmailScraper:
         """
         self.config = self._load_config(config_path)
         self.service = None
-        self.web_scraper = WebScraper()  # Scraper web pour les fallbacks
+        self.web_scraper = FirecrawlScraper()  # Scraper Firecrawl MCP pour les fallbacks
         self._authenticate()
     
     def _load_config(self, config_path: str) -> Dict:
@@ -107,21 +107,21 @@ class GmailScraper:
         # Date de début
         after_date = (datetime.now() - timedelta(days=lookback_days)).strftime("%Y/%m/%d")
         
-        # Construire la requête
+        # Construire la requête (priorité à l'expéditeur)
         query_parts = []
         
-        # From
+        # From (OBLIGATOIRE)
         if 'gmail_from' in source:
             query_parts.append(f"from:{source['gmail_from']}")
-        
-        # Subject
-        if 'gmail_subject_pattern' in source:
-            query_parts.append(f'subject:"{source["gmail_subject_pattern"]}"')
+        else:
+            # Fallback sur le subject si pas de from
+            if 'gmail_subject_pattern' in source:
+                query_parts.append(f'subject:"{source["gmail_subject_pattern"]}"')
         
         # Date
         query_parts.append(f"after:{after_date}")
         
-        # Labels
+        # Labels (optionnel)
         gmail_config = self.config.get('gmail_search', {})
         labels = gmail_config.get('labels', [])
         if labels:

@@ -10,7 +10,7 @@ use only these newsletters or / and links in a balance way ensuring that they ar
 TLDR Marketing, Elena Verna, Demand Curve, 
 Maja Voje , Timothe from How They Build, Kyle Poyar, 
 Kate Syuma, Ben at next play, Kevin DePopas, The Growth Newsletter, Timothe from How They Build, Yann Leonardi - La GROWTH Semaine, Growth with Sean Ellis, Indie Hackers, TLDR Marketing, Amanda at SparkToro, 
-Elena's Growth Scoop
+Elena's Growth Scoop, Kyle Poyar
 
 your goal here is to scan my emails with the gmail tool until you find all these newsletters for the week that just ended
 
@@ -33,6 +33,7 @@ Indie Hackers, https://www.indiehackers.com/
 TLDR Marketing, https://tldr.tech/
 Amanda at SparkToro, https://sparktoro.com/audience-research-newsletter
 User Pilot blog, https://userpilot.com/blog/category/growth/
+Kyle Poyar https://www.growthunhinged.com/
 I trust you to do a balanced summary with all the sources : this is very important
 
 Use the revue fr template.html file as a template

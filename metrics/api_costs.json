@@ -1,0 +1,58 @@
+[
+  {
+    "start_time": "2025-10-27T18:10:34.137949",
+    "anthropic_calls": 2,
+    "anthropic_input_tokens": 3500,
+    "anthropic_output_tokens": 2000,
+    "extraction_method_counts": {
+      "anthropic_ai": 10,
+      "markdown_parser": 15,
+      "substack_parser": 0,
+      "firecrawl_direct": 0
+    },
+    "sources_scraped": 0,
+    "articles_extracted": 25,
+    "end_time": "2025-10-27T18:10:34.138261",
+    "costs": {
+      "input_cost": 0.0105,
+      "output_cost": 0.03,
+      "total_cost": 0.0405,
+      "input_tokens": 3500,
+      "output_tokens": 2000,
+      "total_tokens": 5500
+    },
+    "optimization": {
+      "optimization_rate": 60.0,
+      "ai_free_count": 15,
+      "ai_required_count": 10
+    }
+  },
+  {
+    "start_time": "2025-10-27T18:28:36.064367",
+    "anthropic_calls": 40,
+    "anthropic_input_tokens": 145337,
+    "anthropic_output_tokens": 19955,
+    "extraction_method_counts": {
+      "anthropic_ai": 190,
+      "markdown_parser": 0,
+      "substack_parser": 0,
+      "firecrawl_direct": 0
+    },
+    "sources_scraped": 0,
+    "articles_extracted": 190,
+    "end_time": "2025-10-27T18:44:38.779142",
+    "costs": {
+      "input_cost": 0.436011,
+      "output_cost": 0.299325,
+      "total_cost": 0.735336,
+      "input_tokens": 145337,
+      "output_tokens": 19955,
+      "total_tokens": 165292
+    },
+    "optimization": {
+      "optimization_rate": 0.0,
+      "ai_free_count": 0,
+      "ai_required_count": 190
+    }
+  }
+]

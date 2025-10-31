@@ -10,6 +10,8 @@ import json
 from typing import List, Dict, Optional
 from anthropic import Anthropic
 import yaml
+from scripts.markdown_parser import MarkdownParser
+from scripts.api_metrics import APIMetrics
 
 # Configuration du logging
 logging.basicConfig(
@@ -37,7 +39,12 @@ class AIProcessor:
             raise ValueError("ANTHROPIC_API_KEY doit être défini dans .env")
         
         self.client = Anthropic(api_key=api_key)
-        logger.info("✅ Client Anthropic initialisé")
+        
+        # Nouveaux composants
+        self.markdown_parser = MarkdownParser()
+        self.metrics = APIMetrics()
+        
+        logger.info("✅ Client Anthropic initialisé avec markdown parser & métriques")
     
     def _load_config(self, config_path: str) -> Dict:
         """Charge la configuration depuis le fichier YAML"""
@@ -46,7 +53,7 @@ class AIProcessor:
     
     def extract_articles_from_newsletter(self, email_content: str, source_name: str) -> List[Dict]:
         """
-        Extrait les articles individuels d'une newsletter
+        Extrait les articles individuels d'une newsletter avec parsing intelligent
         
         Args:
             email_content: Contenu complet de l'email
@@ -57,18 +64,62 @@ class AIProcessor:
         """
         logger.info(f"🤖 Extraction des articles de {source_name}...")
         
+        # NOUVEAU: Détection et parsing sans IA si possible
+        if self.markdown_parser.can_parse_without_ai(email_content, source_name):
+            logger.info(f"  🚀 Parsing sans IA pour {source_name}")
+            
+            # Parser Markdown Firecrawl
+            if '####' in email_content or '#####' in email_content:
+                articles = self.markdown_parser.extract_articles_from_markdown(
+                    email_content, source_name
+                )
+                if articles:
+                    self.metrics.track_extraction_method('markdown_parser', len(articles))
+                    return articles
+            
+            # Parser Substack
+            if 'substack' in source_name.lower() or 'class="post-title"' in email_content:
+                articles = self.markdown_parser.extract_from_substack(
+                    email_content, source_name
+                )
+                if articles:
+                    self.metrics.track_extraction_method('markdown_parser', len(articles))
+                    return articles
+        
+        # FALLBACK: Extraction IA classique
+        logger.info(f"  🤖 Extraction IA pour {source_name}")
+        return self._extract_with_ai(email_content, source_name)
+    
+    def _extract_with_ai(self, email_content: str, source_name: str) -> List[Dict]:
+        """
+        Méthode d'extraction IA (renommée de l'ancienne extract_articles_from_newsletter)
+        
+        Args:
+            email_content: Contenu complet de l'email
+            source_name: Nom de la source
+            
+        Returns:
+            Liste d'articles extraits par IA
+        """
+        
         prompt = f"""Tu es un expert en analyse de newsletters de growth marketing.
 
-Analysez cette newsletter de "{source_name}" et extrayez tous les articles/news individuels qu'elle contient.
+Analysez cette newsletter de \"{source_name}\" et extrayez tous les articles/news individuels qu'elle contient.
 
 Pour chaque article, identifiez :
-1. Le titre de l'article
-2. Un résumé court (2 lignes maximum)
+1. Le titre de l'article (1 ligne maximum - 80 caractères max)
+2. Un résumé ULTRA COURT (2 lignes max = 160 caractères max)
 3. L'URL COMPLÈTE et PRÉCISE de l'article (CRITIQUE: cherchez attentivement dans le contenu)
 4. Le niveau d'importance (critical, important, good_to_know)
 
+🔴 CONTRAINTE CRITIQUE - LONGUEUR DU RÉSUMÉ 🔴
+- MAXIMUM 160 caractères pour le résumé (2 lignes)
+- Soyez CONCIS et DIRECT
+- Éliminez tout mot superflu
+- Allez à l'essentiel
+
 Newsletter à analyser :
-{email_content[:10000]}  # Limiter à 10k caractères pour éviter les tokens
+{email_content[:10000]}
 
 IMPORTANT pour les URLs:
 - Cherchez les liens HTTP/HTTPS dans le contenu
@@ -76,12 +127,12 @@ IMPORTANT pour les URLs:
 - Si vous trouvez un lien court, utilisez-le
 - Si vraiment aucun lien n'existe, mettez null
 
-Réponds UNIQUEMENT avec un JSON valide contenant un tableau d'objets avec cette structure :
+Réponds UNIQUEMENT avec un JSON valide :
 {{
   "articles": [
     {{
-      "title": "Titre de l'article",
-      "summary": "Résumé en 2 lignes maximum",
+      "title": "Titre court (max 80 car.)",
+      "summary": "Résumé ultra court max 160 caractères.",
       "url": "https://example.com/article-complet",
       "category": "critical|important|good_to_know"
     }}
@@ -89,6 +140,7 @@ Réponds UNIQUEMENT avec un JSON valide contenant un tableau d'objets avec cette
 }}
 
 Classe les articles par importance (critical pour les plus importants).
+RAPPEL: summary MAX 160 caractères !
 """
         
         try:
@@ -117,7 +169,15 @@ Classe les articles par importance (critical pour les plus importants).
             data = json.loads(response_text)
             articles = data.get('articles', [])
             
-            logger.info(f"  ✅ {len(articles)} article(s) extrait(s)")
+            # Tracker les métriques API
+            self.metrics.track_anthropic_call(
+                input_tokens=message.usage.input_tokens,
+                output_tokens=message.usage.output_tokens,
+                purpose=f"Extraction: {source_name}"
+            )
+            self.metrics.track_extraction_method('anthropic_ai', len(articles))
+            
+            logger.info(f"  ✅ {len(articles)} article(s) extrait(s) par IA")
             return articles
             
         except Exception as e:
@@ -198,6 +258,15 @@ Texte à traduire :
                     
                     if not self._is_french(article['summary']):
                         article['summary'] = self.translate_to_french(article['summary'])
+                    
+                    # VALIDATION: Tronquer le titre et le résumé s'ils sont trop longs
+                    if len(article['title']) > 80:
+                        article['title'] = article['title'][:77] + '...'
+                        logger.warning(f"  ⚠️  Titre tronqué pour {source_name}")
+                    
+                    if len(article['summary']) > 160:
+                        article['summary'] = article['summary'][:157] + '...'
+                        logger.warning(f"  ⚠️  Résumé tronqué pour {source_name}")
                     
                     all_articles.append(article)
         

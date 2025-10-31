@@ -213,6 +213,14 @@ class NewsletterGenerator:
         for source, count in sorted(sources_count.items(), key=lambda x: x[1], reverse=True):
             logger.info(f"   {source}: {count} article(s)")
         
+        # Afficher les métriques API si disponibles
+        if self.ai_processor and hasattr(self.ai_processor, 'metrics'):
+            logger.info("\n" + "=" * 80)
+            logger.info("📊 MÉTRIQUES API & OPTIMISATIONS")
+            logger.info("=" * 80)
+            self.ai_processor.metrics.print_summary()
+            self.ai_processor.metrics.save_metrics()
+        
         logger.info(f"\n📄 Fichier généré: {output_path}")
         logger.info(f"🌐 Ouvrir dans le navigateur: file://{os.path.abspath(output_path)}")
 
