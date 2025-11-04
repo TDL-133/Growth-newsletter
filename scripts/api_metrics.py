@@ -105,11 +105,12 @@ class APIMetrics:
         )
         
         optimization_rate = (ai_free_count / total_articles) * 100
+        ai_required_count = self.current_session['extraction_method_counts'].get('anthropic_ai', 0)
         
         return {
             'optimization_rate': optimization_rate,
             'ai_free_count': ai_free_count,
-            'ai_required_count': self.current_session['extraction_method_counts']['anthropic_ai']
+            'ai_required_count': ai_required_count
         }
     
     def print_summary(self):

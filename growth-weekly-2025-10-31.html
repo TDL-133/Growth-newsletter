@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Weekly - 20-26 octobre 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: #111827;
+            background-color: white;
+        }
+
+        /* Container */
+        .min-h-screen { min-height: 100vh; }
+        .max-w-3xl { max-width: 48rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        
+        /* Spacing */
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-16 { margin-bottom: 4rem; }
+        .mt-1 { margin-top: 0.25rem; }
+        
+        /* Typography */
+        .text-center { text-align: center; }
+        .text-xs { font-size: 0.75rem; line-height: 1rem; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .font-light { font-weight: 300; }
+        .font-medium { font-weight: 500; }
+        .leading-relaxed { line-height: 1.625; }
+        
+        /* Colors */
+        .text-gray-400 { color: #9ca3af; }
+        .text-gray-500 { color: #6b7280; }
+        .text-gray-600 { color: #4b5556; }
+        
+        /* Category colors */
+        .text-red-500 { color: #ef4444; }
+        .text-yellow-500 { color: #eab308; }
+        .text-green-500 { color: #22c55e; }
+        
+        /* Subtitle styling */
+        .subtitle {
+            font-style: italic;
+            color: #6b7280;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Category section styling */
+        .category-section {
+            margin-bottom: 3rem;
+        }
+        
+        .category-header {
+            margin-bottom: 2rem;
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-divider {
+            height: 2px;
+            width: 3rem;
+        }
+        
+        .category-divider.red { background-color: #ef4444; }
+        .category-divider.yellow { background-color: #eab308; }
+        .category-divider.green { background-color: #22c55e; }
+        
+        /* Layout */
+        .flex { display: flex; }
+        .flex-1 { flex: 1 1 0%; }
+        .items-start { align-items: flex-start; }
+        .items-center { align-items: center; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .space-y-12 > * + * { margin-top: 3rem; }
+        
+        /* Divider */
+        .divider {
+            width: 4rem;
+            height: 1px;
+            background-color: #d1d5db;
+            margin: 1rem auto;
+        }
+        
+        /* Article styling */
+        .group {
+            transition: all 0.2s ease;
+        }
+        
+        .group:hover .article-title {
+            color: #2563eb;
+        }
+        
+        .article-title {
+            transition: color 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .article-title:hover {
+            color: #2563eb;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        article {
+            animation: fadeIn 0.5s ease-out forwards;
+            animation-fill-mode: both;
+        }
+        
+        article:nth-child(1) { animation-delay: 0.1s; }
+        article:nth-child(2) { animation-delay: 0.2s; }
+        article:nth-child(3) { animation-delay: 0.3s; }
+        article:nth-child(4) { animation-delay: 0.4s; }
+        article:nth-child(5) { animation-delay: 0.5s; }
+        article:nth-child(6) { animation-delay: 0.6s; }
+        article:nth-child(7) { animation-delay: 0.7s; }
+        article:nth-child(8) { animation-delay: 0.8s; }
+        article:nth-child(9) { animation-delay: 0.9s; }
+        article:nth-child(10) { animation-delay: 1.0s; }
+
+        /* Footer styling */
+        .footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #d1d5db;
+        }
+
+        .sources-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        .sources-list li {
+            margin-bottom: 0.5rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .px-8 { padding-left: 1rem; padding-right: 1rem; }
+            .py-16 { padding-top: 2rem; padding-bottom: 2rem; }
+            .text-4xl { font-size: 1.875rem; }
+            .text-xl { font-size: 1.125rem; }
+            .mb-16 { margin-bottom: 2rem; }
+            .space-y-12 > * + * { margin-top: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen">
+        <div class="max-w-3xl mx-auto px-8 py-16">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <h1 class="text-4xl font-light mb-4">Growth Weekly</h1>
+                <p class="subtitle">by Dagorsey & Claude</p>
+                <p class="text-gray-500 mb-1">20 - 26 octobre 2025</p>
+                <div class="divider"></div>
+                <p class="text-sm text-gray-400">Les sources sont disponibles en fin de newsletter</p>
+            </div>
+
+            <!-- Content -->
+            <div id="minimal-news-container">
+                <!-- News items will be populated here by categories -->
+            </div>
+
+            <!-- Footer -->
+            <div class="footer text-center">
+                <h3 class="text-xl font-medium mb-4">Sources utilisées cette semaine</h3>
+                <ul class="sources-list text-center">
+                    <li>Userpilot Blog - Product-Led Growth Marketing</li>
+                    <li>Salesmate Blog - PLG Strategies</li>
+                    <li>Demand Curve - Growth Marketing</li>
+                    <li>Kyle Poyar's Growth Unhinged</li>
+                    <li>Indie Hackers - Founder Stories</li>
+                    <li>Timothe - How They Build</li>
+                    <li>Elena Verna - Growth Scoop</li>
+                    <li>Next Play - Ben Lang</li>
+                    <li>Growthmates - Kate Syuma</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // News data organized by categories
+        const newsData = {
+            critical: [
+                {
+                    id: "1",
+                    title: "Marketing Attribution is a LIE",
+                    url: "https://www.elenaverna.com/p/marketing-attribution-is-a-lie",
+                    summary: "Elena Verna expose comment l'attribution marketing traditionnelle tue les bonnes stratégies marketing. Un mensonge qui empêche les équipes de prendre les bonnes décisions d'investissement.",
+                    category: "Growth Strategy",
+                    rank: 1,
+                    source: "Elena Verna",
+                    timeAgo: "27 oct"
+                },
+                {
+                    id: "2",
+                    title: "The Rise of Contextual AI: Miro and Amplitude's New Approach",
+                    url: "https://www.growthmates.news/p/the-rise-of-contextual-ai-how-miro",
+                    summary: "Les produits passent de l'IA générique aux systèmes intelligents qui comprennent vraiment le comportement des utilisateurs. Miro et Amplitude montrent la voie.",
+                    category: "Product Strategy",
+                    rank: 2,
+                    source: "Kate Syuma / Growthmates",
+                    timeAgo: "21 oct"
+                },
+                {
+                    id: "3",
+                    title: "What's working in GTM right now - 2025 State of B2B GTM Report",
+                    url: "https://www.growthunhinged.com/p/2025-state-of-b2b-gtm-report",
+                    summary: "Nouvelles données de 195 leaders GTM révèlent les tactiques qui fonctionnent vraiment en 2025. Les stratégies product-led et sales-assist évoluent rapidement.",
+                    category: "GTM Strategy",
+                    rank: 3,
+                    source: "Kyle Poyar",
+                    timeAgo: "29 oct"
+                },
+                {
+                    id: "4",
+                    title: "Product-Led Growth Companies Grow 2X Faster",
+                    url: "https://userpilot.com/blog/product-led-growth-marketing/",
+                    summary: "Le rapport OpenView montre que les entreprises PLG ont 2x plus de chances d'atteindre 100%+ de croissance YoY vs. les entreprises sales-led. Le PLG devient le standard.",
+                    category: "PLG",
+                    rank: 4,
+                    source: "Userpilot",
+                    timeAgo: "1 oct"
+                },
+                {
+                    id: "5",
+                    title: "9 Ways Growth is Different in AI Companies",
+                    url: "https://www.elenaverna.com/p/9-ways-growth-is-different-in-ai",
+                    summary: "Les règles du growth ont changé pour les entreprises AI. Elena détaille comment adapter ses stratégies d'acquisition, activation et rétention.",
+                    category: "AI Growth",
+                    rank: 5,
+                    source: "Elena Verna",
+                    timeAgo: "11 sept"
+                },
+                {
+                    id: "6",
+                    title: "How Claap Reinvented Its Value Proposition for Explosive Growth",
+                    url: "https://timfrin.substack.com/p/how-claap-reinvented-its-value-proposition",
+                    summary: "Le CEO Robin Bonduelle partage comment un pivot radical de la proposition de valeur et de l'ICP a permis à Claap d'atteindre une croissance rapide.",
+                    category: "Product Strategy",
+                    rank: 6,
+                    source: "Timothe Frin",
+                    timeAgo: "23 oct"
+                },
+                {
+                    id: "7",
+                    title: "Your Pricing is (Probably) Broken",
+                    url: "https://www.growthunhinged.com/p/your-pricing-is-broken",
+                    summary: "Il n'existe pas de modèle de pricing parfait. Kyle explique pourquoi la plupart des stratégies de tarification sont cassées et comment les réparer.",
+                    category: "Monetization",
+                    rank: 7,
+                    source: "Kyle Poyar",
+                    timeAgo: "22 oct"
+                },
+                {
+                    id: "8",
+                    title: "How Notion and Miro Shifted to AI - 6 Years Website Evolution",
+                    url: "https://www.growthmates.news/p/how-notion-and-miro-shifted-to-ai",
+                    summary: "Analyse de l'évolution des sites web de deux géants du SaaS sur 6 ans. Comment Notion et Miro ont adapté leur messaging pour l'ère AI.",
+                    category: "Marketing",
+                    rank: 8,
+                    source: "Kate Syuma / Growthmates",
+                    timeAgo: "7 oct"
+                }
+            ],
+            important: [
+                {
+                    id: "9",
+                    title: "How to Turn ChatGPT Into Your Best Pipeline Source",
+                    url: "https://www.growthunhinged.com/p/ai-discovery-playbook",
+                    summary: "Un playbook complet pour faire de l'AI discovery le meilleur canal pour des leads à haute intention. La nouvelle frontière du growth.",
+                    category: "AI Discovery",
+                    rank: 9,
+                    source: "Kyle Poyar",
+                    timeAgo: "8 oct"
+                },
+                {
+                    id: "10",
+                    title: "The Complete Guide to Product-Led Growth Marketing",
+                    url: "https://userpilot.com/blog/product-led-growth-marketing/",
+                    summary: "Guide complet avec stratégies et exemples de Slack, Calendly, Figma pour implémenter le PLG. Focus sur onboarding, self-serve et viral loops.",
+                    category: "PLG Guide",
+                    rank: 10,
+                    source: "Userpilot",
+                    timeAgo: "1 oct"
+                },
+                {
+                    id: "11",
+                    title: "Building a Mobile App Portfolio to $15k+/mo",
+                    url: "https://www.indiehackers.com/post/tech/building-a-mobile-app-portfolio-to-15k-mo-5jpsSF0k2OZKIntPYgTT",
+                    summary: "Sebastian Röhl partage comment il a construit HabitKit après un premier échec, atteignant 15k+ MRR en appliquant les leçons de son expérience.",
+                    category: "Founder Story",
+                    rank: 11,
+                    source: "Indie Hackers",
+                    timeAgo: "28 oct"
+                },
+                {
+                    id: "12",
+                    title: "11 Hard Truths About Working in Growth",
+                    url: "https://www.elenaverna.com/p/11-hard-truths-about-working-in-growth",
+                    summary: "Elena partage les vérités difficiles que les highlight reels ne montrent jamais sur le travail en growth. Essentiel pour les growth leaders.",
+                    category: "Career",
+                    rank: 12,
+                    source: "Elena Verna",
+                    timeAgo: "26 sept"
+                },
+                {
+                    id: "13",
+                    title: "This AI Platform for Researchers Grew 5X Last Year",
+                    url: "https://nextplayso.substack.com/p/this-ai-platform-for-researchers",
+                    summary: "Knit construit une plateforme AI pour augmenter les chercheurs, pas les remplacer. Croissance 5x avec NASCAR et Amazon comme clients.",
+                    category: "AI Product",
+                    rank: 13,
+                    source: "Next Play / Ben Lang",
+                    timeAgo: "30 oct"
+                },
+                {
+                    id: "14",
+                    title: "Product-Led Growth vs. Sales-Led Growth in 2025",
+                    url: "https://www.salesmate.io/blog/what-is-product-led-growth/",
+                    summary: "Analyse complète des différences entre PLG et SLG avec des données réelles. Le modèle hybride PLS émerge comme la meilleure approche.",
+                    category: "GTM Models",
+                    rank: 14,
+                    source: "Salesmate",
+                    timeAgo: "Mai 2025"
+                },
+                {
+                    id: "15",
+                    title: "How This Startup Found Product-Market Fit in Fintech",
+                    url: "https://nextplayso.substack.com/p/how-this-startup-found-product-market",
+                    summary: "Casca, plateforme de prêt powered par AI, partage son parcours pour trouver le PMF dans l'industrie fintech ultra-compétitive.",
+                    category: "PMF",
+                    rank: 15,
+                    source: "Next Play / Ben Lang",
+                    timeAgo: "26 oct"
+                },
+                {
+                    id: "16",
+                    title: "How to Prioritize Product with 4 Proven Methods",
+                    url: "https://timfrin.substack.com/p/how-to-prioritize-product-with-4",
+                    summary: "Les CEOs de Linear, Pennylane, Danim et Hyperline partagent leurs frameworks de priorisation produit. Méthodes concrètes et actionnables.",
+                    category: "Product Management",
+                    rank: 16,
+                    source: "Timothe Frin",
+                    timeAgo: "16 oct"
+                }
+            ],
+            goodToKnow: [
+                {
+                    id: "17",
+                    title: "Inside Timeleft's Journey to 150,000 Diners Monthly",
+                    url: "https://timfrin.substack.com/p/inside-timelefts-journey-to-connecting",
+                    summary: "Maxime Barbier raconte comment Timeleft connecte 150k dîneurs par mois dans 200+ villes avec des pivots stratégiques et du low-code scaling.",
+                    category: "Growth Story",
+                    rank: 17,
+                    source: "Timothe Frin",
+                    timeAgo: "9 oct"
+                },
+                {
+                    id: "18",
+                    title: "The Anatomy of Upgrade & Trial Triggers - 30+ Examples",
+                    url: "https://www.growthmates.news/p/the-anatomy-of-upgrade-and-trial",
+                    summary: "Collection gratuite d'exemples de triggers d'upgrade de Slack, Notion, Lovable, Intercom et plus. Patterns actionnables pour votre produit.",
+                    category: "Conversion",
+                    rank: 18,
+                    source: "Kate Syuma / Growthmates",
+                    timeAgo: "19 août"
+                },
+                {
+                    id: "19",
+                    title: "The Odds of Making It - Zero to $25M ARR",
+                    url: "https://www.growthunhinged.com/p/the-odds-of-making-it",
+                    summary: "Nouvelle analyse de la croissance des startups de 0 à $25M ARR. Les données réelles sur les probabilités de succès à chaque étape.",
+                    category: "Benchmarks",
+                    rank: 19,
+                    source: "Kyle Poyar",
+                    timeAgo: "15 oct"
+                },
+                {
+                    id: "20",
+                    title: "Meet the Startup That Just Raised $35M from GV",
+                    url: "https://nextplayso.substack.com/p/meet-the-startup-that-just-raised",
+                    summary: "Comment la culture de rapidité de Metaview les a aidés à croître jusqu'à 4,000+ clients. Inside de leur levée Google Ventures.",
+                    category: "Funding",
+                    rank: 20,
+                    source: "Next Play / Ben Lang",
+                    timeAgo: "23 oct"
+                },
+                {
+                    id: "21",
+                    title: "How Nabla Dropped 80% of Its Product and Found PMF",
+                    url: "https://timfrin.substack.com/p/how-nabla-dropped-80-of-its-product",
+                    summary: "Alexandre Lebrun (CEO Nabla) explique le focus produit radical qui a débloqué leur PMF. Moins, c'est vraiment plus.",
+                    category: "Product Focus",
+                    rank: 21,
+                    source: "Timothe Frin",
+                    timeAgo: "26 sept"
+                },
+                {
+                    id: "22",
+                    title: "Company Blogs Are No Longer Worth the Investment",
+                    url: "https://www.elenaverna.com/p/company-blogs-are-no-longer-worth",
+                    summary: "Argument provocateur d'Elena : les blogs d'entreprise ne valent plus l'investissement. L'AI et le SEO ont changé les règles du jeu.",
+                    category: "Content Marketing",
+                    rank: 22,
+                    source: "Elena Verna",
+                    timeAgo: "6 mars"
+                },
+                {
+                    id: "23",
+                    title: "How to Make Faster Decisions with Your Work and Career",
+                    url: "https://nextplayso.substack.com/p/how-to-make-faster-decisions-with",
+                    summary: "Tips tactiques de Casey Rosengren pour prendre de meilleures décisions plus rapidement. Framework applicable au travail et à la carrière.",
+                    category: "Career",
+                    rank: 23,
+                    source: "Next Play / Casey Rosengren",
+                    timeAgo: "13 oct"
+                },
+                {
+                    id: "24",
+                    title: "I'm Worried About Women in Tech",
+                    url: "https://www.elenaverna.com/p/im-worried-about-women-in-tech",
+                    summary: "Elena partage ses inquiétudes sur le risque de perdre les progrès réalisés pour les femmes dans la tech. Un appel à l'action nécessaire.",
+                    category: "Diversity",
+                    rank: 24,
+                    source: "Elena Verna",
+                    timeAgo: "21 oct"
+                },
+                {
+                    id: "25",
+                    title: "How I Got Started as a Solopreneur - 10 Harsh Truths",
+                    url: "https://www.growthmates.news/p/how-i-got-started-as-a-solopreneur",
+                    summary: "Kate Syuma révèle les leçons non filtrées de ses premières années en tant que solo entrepreneur. Ce que personne ne vous dit.",
+                    category: "Entrepreneurship",
+                    rank: 25,
+                    source: "Kate Syuma / Growthmates",
+                    timeAgo: "14 oct"
+                },
+                {
+                    id: "26",
+                    title: "This Founder Grew His Product to $6M ARR by Being Small",
+                    url: "https://www.indiehackers.com/post/tech/this-founder-grew-his-product-to-6m-arr-by-taking-advantage-of-being-small-yAw7nzk1w4kxgPXlHt0I",
+                    summary: "Elliot Boucher a eu un business à 6 chiffres avant de finir le lycée. 10 ans plus tard, son SaaS atteint $6M+ ARR. Comment tirer avantage d'être petit.",
+                    category: "Founder Story",
+                    rank: 26,
+                    source: "Indie Hackers",
+                    timeAgo: "27 oct"
+                },
+                {
+                    id: "27",
+                    title: "Dialing in an AI Product's ICP to $400k ARR",
+                    url: "https://www.indiehackers.com/post/tech/dialing-in-an-ai-products-icp-and-growing-it-to-400k-arr-l3XkEjvP43kuUwjxzUnd",
+                    summary: "Snow Lee, founder 3x, résout un problème qu'il a eu dans une entreprise précédente. Comment il a trouvé traction et atteint $400k ARR.",
+                    category: "AI Product",
+                    rank: 27,
+                    source: "Indie Hackers",
+                    timeAgo: "26 oct"
+                }
+            ]
+        };
+
+        // Function to get number color based on category
+        function getNumberColor(rank) {
+            if (rank <= 8) return 'text-red-500';
+            if (rank <= 16) return 'text-yellow-500';
+            return 'text-green-500';
+        }
+
+        // Render function for categorized layout
+        function renderCategorizedLayout() {
+            const container = document.getElementById('minimal-news-container');
+            
+            // Create HTML for Critical section
+            const criticalHTML = `
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2 class="category-title text-red-500">Critical</h2>
+                        <div class="category-divider red"></div>
+                    </div>
+                    <div class="space-y-12">
+                        ${newsData.critical.map((item) => `
+                            <article class="group">
+                                <div class="flex items-start gap-6">
+                                    <div class="text-2xl font-light ${getNumberColor(item.rank)} mt-1">
+                                        ${String(item.rank).padStart(2, '0')}
+                                    </div>
+                                    <div class="flex-1">
+                                        <h2 class="text-xl font-medium mb-3">
+                                            <a href="${item.url}" target="_blank" class="article-title">
+                                                ${item.title}
+                                            </a>
+                                        </h2>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">${item.summary}</p>
+                                        <div class="flex items-center gap-4 text-sm text-gray-400">
+                                            <span>${item.source}</span>
+                                            <span>•</span>
+                                            <span>${item.timeAgo}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // Create HTML for Important section
+            const importantHTML = `
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2 class="category-title text-yellow-500">Important</h2>
+                        <div class="category-divider yellow"></div>
+                    </div>
+                    <div class="space-y-12">
+                        ${newsData.important.map((item) => `
+                            <article class="group">
+                                <div class="flex items-start gap-6">
+                                    <div class="text-2xl font-light ${getNumberColor(item.rank)} mt-1">
+                                        ${String(item.rank).padStart(2, '0')}
+                                    </div>
+                                    <div class="flex-1">
+                                        <h2 class="text-xl font-medium mb-3">
+                                            <a href="${item.url}" target="_blank" class="article-title">
+                                                ${item.title}
+                                            </a>
+                                        </h2>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">${item.summary}</p>
+                                        <div class="flex items-center gap-4 text-sm text-gray-400">
+                                            <span>${item.source}</span>
+                                            <span>•</span>
+                                            <span>${item.timeAgo}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // Create HTML for Good to Know section
+            const goodToKnowHTML = `
+                <div class="category-section">
+                    <div class="category-header">
+                        <h2 class="category-title text-green-500">Good to Know</h2>
+                        <div class="category-divider green"></div>
+                    </div>
+                    <div class="space-y-12">
+                        ${newsData.goodToKnow.map((item) => `
+                            <article class="group">
+                                <div class="flex items-start gap-6">
+                                    <div class="text-2xl font-light ${getNumberColor(item.rank)} mt-1">
+                                        ${String(item.rank).padStart(2, '0')}
+                                    </div>
+                                    <div class="flex-1">
+                                        <h2 class="text-xl font-medium mb-3">
+                                            <a href="${item.url}" target="_blank" class="article-title">
+                                                ${item.title}
+                                            </a>
+                                        </h2>
+                                        <p class="text-gray-600 mb-4 leading-relaxed">${item.summary}</p>
+                                        <div class="flex items-center gap-4 text-sm text-gray-400">
+                                            <span>${item.source}</span>
+                                            <span>•</span>
+                                            <span>${item.timeAgo}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // Combine all sections
+            container.innerHTML = criticalHTML + importantHTML + goodToKnowHTML;
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCategorizedLayout();
+        });
+    </script>
+</body>
+</html>

@@ -55,7 +55,9 @@ def _simulate_mcp_call(tool_name: str, params: Dict[str, Any]) -> Dict[str, Any]
     if tool_name == "firecrawl_scrape":
         url = params.get("url", "")
         return {
-            "markdown": f"""# Growth Marketing Article
+            "success": True,
+            "content": [{
+                "markdown": f"""# Growth Marketing Article
 
 ## Recent News from {url}
 
@@ -92,16 +94,18 @@ Main points:
 
 [Read more]({url}/article3)
 """,
-            "metadata": {
-                "title": f"Latest from {url}",
-                "date": "2024-10-26",
-                "source": url
-            }
+                "metadata": {
+                    "title": f"Latest from {url}",
+                    "date": "2024-10-26",
+                    "source": url
+                }
+            }]
         }
     
     elif tool_name == "tavily-search":
         query = params.get("query", "")
         return {
+            "success": True,
             "results": [
                 {
                     "title": f"Search result for: {query}",

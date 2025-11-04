@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Weekly - Archive des Newsletters</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+        }
+
+        .byline {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            margin-top: 0.5rem;
+        }
+
+        .newsletter-grid {
+            display: grid;
+            gap: 1.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .newsletter-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .newsletter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .newsletter-card h2 {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .newsletter-date {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .newsletter-date::before {
+            content: "📅";
+        }
+
+        .newsletter-description {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .latest-badge {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .newsletter-card {
+                padding: 1.5rem;
+            }
+
+            .newsletter-card h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Growth Weekly</h1>
+            <p class="subtitle">Le meilleur du Growth Marketing en français</p>
+            <p class="byline">by Dagorsey & Claude</p>
+        </header>
+
+        <div class="newsletter-grid">
+            <a href="growth-weekly-2025-10-31.html" class="newsletter-card">
+                <h2>Growth Weekly #2</h2>
+                <div class="newsletter-date">31 Octobre 2025</div>
+                <p class="newsletter-description">
+                    Découvrez les dernières tendances du growth marketing : stratégies d'acquisition, 
+                    optimisation de conversion, product-led growth et insights des meilleurs experts.
+                </p>
+                <span class="badge latest-badge">🔥 Dernière édition</span>
+            </a>
+
+            <a href="growth-weekly-2025-10-26.html" class="newsletter-card">
+                <h2>Growth Weekly #1</h2>
+                <div class="newsletter-date">20-26 Octobre 2025</div>
+                <p class="newsletter-description">
+                    25+ articles triés des meilleures newsletters growth : Elena Verna, Demand Curve, 
+                    Kyle Poyar, Growth Mates et bien d'autres sources de référence.
+                </p>
+                <span class="badge">📰 Archive</span>
+            </a>
+        </div>
+
+        <footer>
+            <p>
+                Généré automatiquement à partir de 14+ sources premium de growth marketing<br>
+                <a href="https://github.com" target="_blank">Voir le projet sur GitHub</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Animation au chargement des cartes
+        const cards = document.querySelectorAll('.newsletter-card');
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                card.style.transition = 'all 0.6s ease-out';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 300 + (index * 150));
+        });
+    </script>
+</body>
+</html>

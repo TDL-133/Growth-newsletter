@@ -119,7 +119,7 @@ Pour chaque article, identifiez :
 - Allez à l'essentiel
 
 Newsletter à analyser :
-{email_content[:10000]}
+{email_content[:5000]}
 
 IMPORTANT pour les URLs:
 - Cherchez les liens HTTP/HTTPS dans le contenu
@@ -145,7 +145,7 @@ RAPPEL: summary MAX 160 caractères !
         
         try:
             message = self.client.messages.create(
-                model="claude-3-5-sonnet-20241022",
+                model="claude-sonnet-4-5",
                 max_tokens=4096,
                 messages=[
                     {"role": "user", "content": prompt}
@@ -207,7 +207,7 @@ Texte à traduire :
         
         try:
             message = self.client.messages.create(
-                model="claude-3-5-sonnet-20241022",
+                model="claude-sonnet-4-5",
                 max_tokens=1024,
                 messages=[
                     {"role": "user", "content": prompt}
@@ -384,7 +384,7 @@ ATTENTION: Si tu exclus une source de ta sélection, tu as échoué cette tâche
         
         try:
             message = self.client.messages.create(
-                model="claude-3-5-sonnet-20241022",
+                model="claude-sonnet-4-5",
                 max_tokens=4096,
                 messages=[
                     {"role": "user", "content": prompt}
